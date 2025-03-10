@@ -63,7 +63,6 @@ class AppData: ObservableObject {
             loadCurrentUserSettings(userId: userId)
         }
         loadCachedData()
-        // Move reset to ContentView’s onAppear
         rescheduleDailyReminders()
         NSLog("AppData init completed at %@, treatmentTimerEnd: %@", String(describing: Date()), String(describing: treatmentTimerEnd))
         
@@ -103,44 +102,43 @@ class AppData: ObservableObject {
             NSLog("Loaded cached consumptionLog: %ld cycles", decodedLog.count)
         }
         
-        // Try file-based cache first
+        // Load treatmentTimerEnd in priority order: file cache > Firebase > UserDefaults
+        let now = Date()
         if fileManager.fileExists(atPath: timerCacheURL.path) {
             do {
                 let timerData = try Data(contentsOf: timerCacheURL)
                 let decodedTimer = try JSONDecoder().decode(Date.self, from: timerData)
-                let now = Date()
                 if decodedTimer > now {
                     self.treatmentTimerEnd = decodedTimer
-                    NSLog("Loaded cached treatmentTimerEnd from file: %@, now: %@", String(describing: decodedTimer), String(describing: now))
+                    NSLog("Loaded treatmentTimerEnd from file cache: %@, now: %@", String(describing: decodedTimer), String(describing: now))
                 } else {
                     self.treatmentTimerEnd = nil
                     try? fileManager.removeItem(at: timerCacheURL)
                     NSLog("Discarded expired treatmentTimerEnd from file: %@, now: %@", String(describing: decodedTimer), String(describing: now))
                 }
             } catch {
-                NSLog("Failed to load/decode treatmentTimerEnd from file: %@", error.localizedDescription)
+                NSLog("Failed to load treatmentTimerEnd from file: %@", error.localizedDescription)
             }
-        } else {
-            NSLog("No treatmentTimerEnd file cache found")
-        }
-        
-        // Fallback to synchronous Firebase fetch if file cache fails
-        if self.treatmentTimerEnd == nil, let dbRef = dbRef {
+        } else if let dbRef = dbRef {
+            // Synchronous Firebase fetch as a fallback
             let semaphore = DispatchSemaphore(value: 0)
             var fetchedDate: Date?
             dbRef.child("treatmentTimerEnd").observeSingleEvent(of: .value) { snapshot in
                 let formatter = ISO8601DateFormatter()
-                if let timestamp = snapshot.value as? String, let date = formatter.date(from: timestamp), date > Date() {
+                if let timestamp = snapshot.value as? String, let date = formatter.date(from: timestamp), date > now {
                     fetchedDate = date
-                    NSLog("Fetched treatmentTimerEnd from Firebase: %@, now: %@", String(describing: date), String(describing: Date()))
+                    NSLog("Fetched treatmentTimerEnd from Firebase: %@, now: %@", String(describing: date), String(describing: now))
                 }
                 semaphore.signal()
             }
-            _ = semaphore.wait(timeout: .now() + 5) // Wait up to 5 seconds
+            _ = semaphore.wait(timeout: .now() + 5)
             if let date = fetchedDate {
                 self.treatmentTimerEnd = date
-                NSLog("Restored treatmentTimerEnd from Firebase sync: %@, now: %@", String(describing: date), String(describing: Date()))
             }
+        } else if let timerData = UserDefaults.standard.data(forKey: "cachedTreatmentTimerEnd"),
+                  let decodedTimer = try? JSONDecoder().decode(Date.self, from: timerData), decodedTimer > now {
+            self.treatmentTimerEnd = decodedTimer
+            NSLog("Loaded treatmentTimerEnd from UserDefaults: %@, now: %@", String(describing: decodedTimer), String(describing: now))
         }
         
         if let timerId = UserDefaults.standard.string(forKey: "cachedTreatmentTimerId") {
@@ -164,25 +162,17 @@ class AppData: ObservableObject {
         if let timerEnd = treatmentTimerEnd {
             do {
                 let timerData = try JSONEncoder().encode(timerEnd)
-                // Write to file for reliable persistence
                 try timerData.write(to: timerCacheURL, options: .atomic)
-                // Also write to UserDefaults as a secondary cache
                 UserDefaults.standard.set(timerData, forKey: "cachedTreatmentTimerEnd")
-                if let verifyData = try? Data(contentsOf: timerCacheURL),
-                   let verifiedTimer = try? JSONDecoder().decode(Date.self, from: verifyData) {
-                    NSLog("Saved and verified cached treatmentTimerEnd to file: %@, data length: %ld bytes, now: %@", String(describing: verifiedTimer), verifyData.count, String(describing: Date()))
-                } else {
-                    NSLog("Saved but failed to verify treatmentTimerEnd file, now: %@", String(describing: Date()))
-                }
+                NSLog("Saved treatmentTimerEnd to file and UserDefaults: %@, now: %@", String(describing: timerEnd), String(describing: Date()))
             } catch {
-                NSLog("Failed to encode/save treatmentTimerEnd: %@", error.localizedDescription)
+                NSLog("Failed to save treatmentTimerEnd: %@", error.localizedDescription)
             }
         } else {
             UserDefaults.standard.removeObject(forKey: "cachedTreatmentTimerEnd")
             try? fileManager.removeItem(at: timerCacheURL)
-            NSLog("Cleared cached treatmentTimerEnd, now: %@", String(describing: Date()))
+            NSLog("Cleared treatmentTimerEnd cache, now: %@", String(describing: Date()))
         }
-        NSLog("UserDefaults and file write completed")
     }
 
     func debugState() {
@@ -355,16 +345,20 @@ class AppData: ObservableObject {
         dbRef.child("treatmentTimerEnd").observe(.value) { snapshot in
             let formatter = ISO8601DateFormatter()
             DispatchQueue.main.async {
-                if snapshot.value != nil, let timestamp = snapshot.value as? String,
-                   let date = formatter.date(from: timestamp) {
-                    if self.treatmentTimerEnd == nil || date > self.treatmentTimerEnd! {
+                let now = Date()
+                if let timestamp = snapshot.value as? String,
+                   let date = formatter.date(from: timestamp), date > now {
+                    if self.treatmentTimerEnd != date {
                         self.treatmentTimerEnd = date
-                        NSLog("Firebase updated treatmentTimerEnd to: %@, now: %@", String(describing: date), String(describing: Date()))
+                        NSLog("Firebase updated treatmentTimerEnd to: %@, now: %@", String(describing: date), String(describing: now))
                     }
-                } else if self.treatmentTimerEnd != nil && self.treatmentTimerEnd! <= Date() {
+                } else if snapshot.value == nil && self.treatmentTimerEnd != nil && self.treatmentTimerEnd! > now {
+                    // Do not clear if still active locally
+                    NSLog("Firebase cleared treatmentTimerEnd, but local timer still active: %@, now: %@", String(describing: self.treatmentTimerEnd), String(describing: now))
+                } else {
                     self.treatmentTimerEnd = nil
                     self.treatmentTimerId = nil
-                    NSLog("Firebase cleared treatmentTimerEnd as it’s past, now: %@", String(describing: Date()))
+                    NSLog("Cleared treatmentTimerEnd from Firebase, now: %@", String(describing: now))
                 }
                 self.saveCachedData()
             }
@@ -379,13 +373,14 @@ class AppData: ObservableObject {
 
     func setTreatmentTimerEnd(_ date: Date?) {
         guard let dbRef = dbRef else { return }
-        if let date = date {
+        let now = Date()
+        if let date = date, date > now {
             dbRef.child("treatmentTimerEnd").setValue(ISO8601DateFormatter().string(from: date))
-            NSLog("Set treatmentTimerEnd to: %@, now: %@", String(describing: date), String(describing: Date()))
-        } else {
+            NSLog("Set treatmentTimerEnd to: %@, now: %@", String(describing: date), String(describing: now))
+        } else if date == nil || (date != nil && date! <= now) {
             dbRef.child("treatmentTimerEnd").removeValue()
             self.treatmentTimerId = nil
-            NSLog("Cleared treatmentTimerEnd, now: %@", String(describing: Date()))
+            NSLog("Cleared treatmentTimerEnd, now: %@", String(describing: now))
         }
         DispatchQueue.main.async {
             self.saveCachedData()
