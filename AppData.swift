@@ -105,7 +105,7 @@ class AppData: ObservableObject {
             NSLog("Loaded cached consumptionLog: %ld cycles", decodedLog.count)
         }
         
-        // Load treatmentTimerEnd from UserDefaults first (prioritizing reliability)
+        // Load treatmentTimerEnd from UserDefaults first
         if let timerData = UserDefaults.standard.data(forKey: "cachedTreatmentTimerEnd") {
             do {
                 let decodedTimer = try JSONDecoder().decode(Date.self, from: timerData)
@@ -121,10 +121,10 @@ class AppData: ObservableObject {
                 NSLog("Failed to decode treatmentTimerEnd from UserDefaults: %@, data: %@", error.localizedDescription, String(describing: timerData))
             }
         } else {
-            NSLog("No treatmentTimerEnd data in UserDefaults")
+            NSLog("No treatmentTimerEnd data in UserDefaults at load time")
         }
         
-        // Fallback to file cache (for debugging, but less reliable in Simulator)
+        // Fallback to file cache
         if treatmentTimerEnd == nil && fileManager.fileExists(atPath: timerCacheURL.path) {
             do {
                 let timerData = try Data(contentsOf: timerCacheURL)
@@ -166,6 +166,7 @@ class AppData: ObservableObject {
             do {
                 let timerData = try JSONEncoder().encode(timerEnd)
                 UserDefaults.standard.set(timerData, forKey: "cachedTreatmentTimerEnd")
+                UserDefaults.standard.synchronize() // Force sync to disk
                 NSLog("Saved treatmentTimerEnd to UserDefaults: %@, data: %@", String(describing: timerEnd), String(describing: timerData))
                 try timerData.write(to: timerCacheURL, options: .atomic)
                 NSLog("Saved treatmentTimerEnd to file: %@, path: %@", String(describing: timerEnd), timerCacheURL.path)
@@ -174,6 +175,7 @@ class AppData: ObservableObject {
             }
         } else {
             UserDefaults.standard.removeObject(forKey: "cachedTreatmentTimerEnd")
+            UserDefaults.standard.synchronize() // Force sync to disk
             try? fileManager.removeItem(at: timerCacheURL)
             NSLog("Cleared treatmentTimerEnd cache, now: %@", String(describing: Date()))
         }
