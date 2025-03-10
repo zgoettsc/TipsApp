@@ -95,19 +95,25 @@ struct ContentView: View {
                 checkSetupNeeded()
                 checkNotificationPermissions()
                 if let endDate = appData.treatmentTimerEnd, endDate > Date() {
+                    NSLog("Restoring timer on appear: endDate = %@", String(describing: endDate))
                     resumeTreatmentTimer()
+                } else {
+                    NSLog("No active timer to restore on appear")
                 }
             }
         }
         .onChange(of: appData.treatmentTimerEnd) { newValue in
             if let endDate = newValue, endDate > Date() {
+                NSLog("treatmentTimerEnd changed, resuming: %@", String(describing: endDate))
                 resumeTreatmentTimer()
             } else {
+                NSLog("treatmentTimerEnd cleared, stopping")
                 stopTreatmentTimer()
             }
         }
         .onChange(of: appData.isLoading) { newValue in
             if !newValue && appData.treatmentTimerEnd != nil {
+                NSLog("isLoading finished, resuming timer if active")
                 resumeTreatmentTimer()
             }
         }
@@ -457,6 +463,8 @@ struct ContentView: View {
                         NSLog("Rescheduled notification for %@", self.treatmentTimerId!)
                     }
                 }
+            } else {
+                NSLog("Notification %@ still pending, no reschedule needed", self.treatmentTimerId!)
             }
         }
     }
