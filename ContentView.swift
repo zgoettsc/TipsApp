@@ -61,6 +61,7 @@ struct ContentView: View {
                             let log = "Debug - treatmentTimerEnd: \(String(describing: appData.treatmentTimerEnd)), treatmentCountdown: \(String(describing: treatmentCountdown)), now: \(Date())"
                             print(log)
                             logToFile(log)
+                            appData.debugState()
                         }
                         NavigationLink(destination: SettingsView(appData: appData)) {
                             Image(systemName: "gear")
@@ -82,69 +83,37 @@ struct ContentView: View {
         }
         .navigationViewStyle(.stack)
         .onReceive(timer) { _ in
-            let log = "Timer fired at \(Date())"
-            print(log)
-            logToFile(log)
             updateTreatmentCountdown()
         }
         .onAppear {
             if !hasAppeared {
-                DispatchQueue.main.async {
-                    if let window = UIApplication.shared.windows.first {
-                        let alert = UIAlertController(
-                            title: "App Launched",
-                            message: "Launched at \(Date()), treatmentTimerEnd: \(appData.treatmentTimerEnd?.description ?? "nil")",
-                            preferredStyle: .alert
-                        )
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        window.rootViewController?.present(alert, animated: true)
-                    }
-                }
                 hasAppeared = true
+                NSLog("ContentView onAppear - Initial load at %@", String(describing: Date()))
+                appData.reloadCachedData()
+                appData.checkAndResetIfNeeded()
+                initializeCollapsedState()
+                checkSetupNeeded()
+                checkNotificationPermissions()
+                if let endDate = appData.treatmentTimerEnd, endDate > Date() {
+                    resumeTreatmentTimer()
+                }
             }
-            let log = "onAppear - treatmentTimerEnd: \(String(describing: appData.treatmentTimerEnd)), isLoading: \(appData.isLoading), now: \(Date())"
-            print(log)
-            logToFile(log)
-            
-            appData.reloadCachedData()
-            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            initializeCollapsedState()
-            updateTreatmentCountdown()
-            checkSetupNeeded()
-            checkNotificationPermissions()
-            appData.checkAndResetIfNeeded() // Moved from AppData init to here, after loading cached data
-            
-            if let endDate = appData.treatmentTimerEnd, endDate > Date() {
-                print("onAppear - Forcing resumeTreatmentTimer with endDate: \(endDate)")
+        }
+        .onChange(of: appData.treatmentTimerEnd) { newValue in
+            if let endDate = newValue, endDate > Date() {
                 resumeTreatmentTimer()
+            } else {
+                stopTreatmentTimer()
             }
         }
         .onChange(of: appData.isLoading) { newValue in
-            print("isLoading changed to \(newValue), treatmentTimerEnd: \(String(describing: appData.treatmentTimerEnd))")
-            if !newValue, let endDate = appData.treatmentTimerEnd, endDate > Date() {
-                print("isLoading changed to false - Resuming timer with endDate: \(endDate)")
+            if !newValue && appData.treatmentTimerEnd != nil {
                 resumeTreatmentTimer()
-                updateTreatmentCountdown()
-                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             }
         }
         .onChange(of: appData.cycles) { _ in checkCycleEnd() }
         .onChange(of: appData.currentUser) { _ in checkCycleEnd() }
         .onChange(of: appData.consumptionLog) { _ in handleConsumptionLogChange() }
-        .onChange(of: appData.treatmentTimerEnd) { newValue in
-            let log = "treatmentTimerEnd changed to: \(String(describing: newValue))"
-            print(log)
-            logToFile(log)
-            updateTreatmentCountdown()
-            if newValue != nil && newValue! > Date() {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    print("resumeTreatmentTimer from onChange")
-                    self.resumeTreatmentTimer()
-                    self.updateTreatmentCountdown()
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                }
-            }
-        }
         .onChange(of: appData.syncError) { newValue in showingSyncError = newValue != nil }
         .onChange(of: showingSetupWizard) { newValue in
             if !newValue && !showingCycleEndPopup {
@@ -410,13 +379,11 @@ struct ContentView: View {
         } else {
             appData.logConsumption(itemId: item.id, cycleId: cycleId)
             if item.category == .treatment && (appData.currentUser?.treatmentFoodTimerEnabled ?? false) {
-                DispatchQueue.main.async {
-                    let isComplete = self.isCategoryComplete(.treatment)
-                    if !isComplete {
-                        self.startTreatmentTimer()
-                    } else {
-                        self.stopTreatmentTimer()
-                    }
+                let isComplete = isCategoryComplete(.treatment)
+                if !isComplete {
+                    startTreatmentTimer()
+                } else {
+                    stopTreatmentTimer()
                 }
             }
         }
@@ -433,11 +400,11 @@ struct ContentView: View {
         }
         stopTreatmentTimer()
         let now = Date()
-        let duration = appData.currentUser?.treatmentTimerDuration ?? 900.0 // Use user-configured duration instead of hardcoded 30 seconds
+        let duration = appData.currentUser?.treatmentTimerDuration ?? 900.0 // Default 15 minutes
         let endDate = now.addingTimeInterval(duration)
         appData.treatmentTimerEnd = endDate
         treatmentCountdown = duration
-        print("Started timer: endDate = \(endDate), countdown = \(duration)")
+        NSLog("Started timer: endDate = %@, countdown = %f", String(describing: endDate), duration)
 
         let notificationId = "treatment_timer_\(UUID().uuidString)"
         treatmentTimerId = notificationId
@@ -454,78 +421,41 @@ struct ContentView: View {
 
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("Error scheduling notification: \(error.localizedDescription)")
+                NSLog("Error scheduling notification: %@", error.localizedDescription)
             } else {
-                print("Scheduled notification for \(notificationId)")
+                NSLog("Scheduled notification for %@", notificationId)
             }
         }
     }
 
     private func resumeTreatmentTimer() {
-        print("resumeTreatmentTimer - Started, treatmentTimerEnd: \(String(describing: appData.treatmentTimerEnd))")
-        guard let endDate = appData.treatmentTimerEnd else {
-            print("resumeTreatmentTimer - No endDate, stopping")
+        guard let endDate = appData.treatmentTimerEnd, endDate > Date() else {
             stopTreatmentTimer()
             return
         }
-        let now = Date()
-        if endDate <= now {
-            print("resumeTreatmentTimer - endDate \(endDate) is past, stopping")
-            stopTreatmentTimer()
-            return
-        }
-
         let remaining = max(endDate.timeIntervalSinceNow, 0)
         treatmentCountdown = remaining
-        treatmentTimerId = appData.treatmentTimerId
-        print("resumeTreatmentTimer - Set treatmentCountdown to \(remaining), treatmentTimerId = \(String(describing: treatmentTimerId))")
+        treatmentTimerId = appData.treatmentTimerId ?? "treatment_timer_\(UUID().uuidString)"
+        appData.treatmentTimerId = treatmentTimerId
+        NSLog("Resumed timer: endDate = %@, remaining = %f, id = %@", String(describing: endDate), remaining, String(describing: treatmentTimerId))
 
-        if let timerId = treatmentTimerId {
-            UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-                DispatchQueue.main.async {
-                    if requests.contains(where: { $0.identifier == timerId }) {
-                        print("resumeTreatmentTimer: Notification \(timerId) still pending")
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            if !requests.contains(where: { $0.identifier == self.treatmentTimerId! }) {
+                let content = UNMutableNotificationContent()
+                content.title = "Time for the next treatment food"
+                content.body = "Your \(Int((self.appData.currentUser?.treatmentTimerDuration ?? 900) / 60)) minute treatment food timer has ended."
+                content.sound = UNNotificationSound.default
+                content.categoryIdentifier = "TREATMENT_TIMER"
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(remaining, 1), repeats: false)
+                let request = UNNotificationRequest(identifier: self.treatmentTimerId!, content: content, trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        NSLog("Error rescheduling notification: %@", error.localizedDescription)
                     } else {
-                        print("resumeTreatmentTimer: Notification \(timerId) missing, rescheduling")
-                        let content = UNMutableNotificationContent()
-                        content.title = "Time for the next treatment food"
-                        content.body = "Your \(Int((self.appData.currentUser?.treatmentTimerDuration ?? 900) / 60)) minute treatment food timer has ended."
-                        content.sound = UNNotificationSound.default
-                        content.categoryIdentifier = "TREATMENT_TIMER"
-
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(remaining, 1), repeats: false)
-                        let request = UNNotificationRequest(identifier: timerId, content: content, trigger: trigger)
-
-                        UNUserNotificationCenter.current().add(request) { error in
-                            if let error = error {
-                                print("resumeTreatmentTimer: Error rescheduling notification: \(error.localizedDescription)")
-                            } else {
-                                print("resumeTreatmentTimer: Rescheduled notification for \(timerId)")
-                            }
-                        }
+                        NSLog("Rescheduled notification for %@", self.treatmentTimerId!)
                     }
-                }
-            }
-        } else {
-            print("resumeTreatmentTimer: No treatmentTimerId, creating new notification")
-            let newId = "treatment_timer_\(UUID().uuidString)"
-            treatmentTimerId = newId
-            appData.treatmentTimerId = newId
-
-            let content = UNMutableNotificationContent()
-            content.title = "Time for the next treatment food"
-            content.body = "Your \(Int((appData.currentUser?.treatmentTimerDuration ?? 900) / 60)) minute treatment food timer has ended."
-            content.sound = UNNotificationSound.default
-            content.categoryIdentifier = "TREATMENT_TIMER"
-
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(remaining, 1), repeats: false)
-            let request = UNNotificationRequest(identifier: newId, content: content, trigger: trigger)
-
-            UNUserNotificationCenter.current().add(request) { error in
-                if let error = error {
-                    print("resumeTreatmentTimer: Error scheduling new notification: \(error.localizedDescription)")
-                } else {
-                    print("resumeTreatmentTimer: Scheduled new notification for \(newId)")
                 }
             }
         }
@@ -536,9 +466,7 @@ struct ContentView: View {
         treatmentCountdown = nil
         if let timerId = treatmentTimerId {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [timerId])
-            print("stopTreatmentTimer: Cleared timer, removed notification \(timerId)")
-        } else {
-            print("stopTreatmentTimer: Cleared timer, no notification to remove")
+            NSLog("Stopped timer: removed notification %@", timerId)
         }
         treatmentTimerId = nil
         appData.treatmentTimerId = nil
@@ -554,21 +482,12 @@ struct ContentView: View {
     }
 
     private func updateTreatmentCountdown() {
-        let log = "updateTreatmentCountdown - Called at \(Date()), treatmentTimerEnd: \(String(describing: appData.treatmentTimerEnd))"
-        print(log)
-        logToFile(log)
         guard appData.currentUser?.treatmentFoodTimerEnabled ?? false, let endDate = appData.treatmentTimerEnd else {
             treatmentCountdown = nil
-            let clearLog = "updateTreatmentCountdown - Cleared countdown, timer disabled or no endDate"
-            print(clearLog)
-            logToFile(clearLog)
             return
         }
         let remaining = max(0, endDate.timeIntervalSinceNow)
         treatmentCountdown = remaining
-        let setLog = "updateTreatmentCountdown - Set treatmentCountdown to \(remaining)"
-        print(setLog)
-        logToFile(setLog)
         if remaining <= 0 || isCategoryComplete(.treatment) {
             stopTreatmentTimer()
         }
