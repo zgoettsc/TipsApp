@@ -95,10 +95,10 @@ struct ContentView: View {
                 checkSetupNeeded()
                 checkNotificationPermissions()
                 if let endDate = appData.treatmentTimerEnd, endDate > Date() {
-                    NSLog("Restoring timer on appear: endDate = %@", String(describing: endDate))
+                    NSLog("Restoring timer on appear: endDate = %@", remaining = %f, String(describing: endDate))
                     resumeTreatmentTimer()
                 } else {
-                    NSLog("No active timer to restore on appear")
+                    NSLog("No active timer to restore on appear: treatmentTimerEnd = %@", String(describing: appData.treatmentTimerEnd))
                 }
             }
         }
