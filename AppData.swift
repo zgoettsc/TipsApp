@@ -105,26 +105,23 @@ class AppData: ObservableObject {
             NSLog("Loaded cached consumptionLog: %ld cycles", decodedLog.count)
         }
         
-        // Load treatmentTimerEnd from UserDefaults first
-        if let timerData = UserDefaults.standard.data(forKey: "cachedTreatmentTimerEnd") {
-            do {
-                let decodedTimer = try JSONDecoder().decode(Date.self, from: timerData)
-                if decodedTimer > now {
-                    self.treatmentTimerEnd = decodedTimer
-                    NSLog("Loaded treatmentTimerEnd from UserDefaults: %@, now: %@", String(describing: decodedTimer), String(describing: now))
-                } else {
-                    self.treatmentTimerEnd = nil
-                    UserDefaults.standard.removeObject(forKey: "cachedTreatmentTimerEnd")
-                    NSLog("Discarded expired treatmentTimerEnd from UserDefaults: %@, now: %@", String(describing: decodedTimer), String(describing: now))
-                }
-            } catch {
-                NSLog("Failed to decode treatmentTimerEnd from UserDefaults: %@, data: %@", error.localizedDescription, String(describing: timerData))
+        // Load treatmentTimerEnd as a Double from UserDefaults
+        let timerInterval = UserDefaults.standard.double(forKey: "cachedTreatmentTimerEnd")
+        if timerInterval > 0 { // Check if a value exists
+            let decodedTimer = Date(timeIntervalSince1970: timerInterval)
+            if decodedTimer > now {
+                self.treatmentTimerEnd = decodedTimer
+                NSLog("Loaded treatmentTimerEnd from UserDefaults: %@ (interval: %f), now: %@", String(describing: decodedTimer), timerInterval, String(describing: now))
+            } else {
+                self.treatmentTimerEnd = nil
+                UserDefaults.standard.removeObject(forKey: "cachedTreatmentTimerEnd")
+                NSLog("Discarded expired treatmentTimerEnd from UserDefaults: %@ (interval: %f), now: %@", String(describing: decodedTimer), timerInterval, String(describing: now))
             }
         } else {
-            NSLog("No treatmentTimerEnd data in UserDefaults at load time")
+            NSLog("No treatmentTimerEnd data in UserDefaults (interval: %f)", timerInterval)
         }
         
-        // Fallback to file cache
+        // Fallback to file cache (for debugging)
         if treatmentTimerEnd == nil && fileManager.fileExists(atPath: timerCacheURL.path) {
             do {
                 let timerData = try Data(contentsOf: timerCacheURL)
@@ -163,15 +160,16 @@ class AppData: ObservableObject {
             UserDefaults.standard.set(logData, forKey: "cachedConsumptionLog")
         }
         if let timerEnd = treatmentTimerEnd {
+            let timerInterval = timerEnd.timeIntervalSince1970
+            UserDefaults.standard.set(timerInterval, forKey: "cachedTreatmentTimerEnd")
+            UserDefaults.standard.synchronize() // Force sync to disk
+            NSLog("Saved treatmentTimerEnd to UserDefaults: %@ (interval: %f)", String(describing: timerEnd), timerInterval)
             do {
                 let timerData = try JSONEncoder().encode(timerEnd)
-                UserDefaults.standard.set(timerData, forKey: "cachedTreatmentTimerEnd")
-                UserDefaults.standard.synchronize() // Force sync to disk
-                NSLog("Saved treatmentTimerEnd to UserDefaults: %@, data: %@", String(describing: timerEnd), String(describing: timerData))
                 try timerData.write(to: timerCacheURL, options: .atomic)
                 NSLog("Saved treatmentTimerEnd to file: %@, path: %@", String(describing: timerEnd), timerCacheURL.path)
             } catch {
-                NSLog("Failed to save treatmentTimerEnd: %@, path: %@", error.localizedDescription, timerCacheURL.path)
+                NSLog("Failed to save treatmentTimerEnd to file: %@, path: %@", error.localizedDescription, timerCacheURL.path)
             }
         } else {
             UserDefaults.standard.removeObject(forKey: "cachedTreatmentTimerEnd")
