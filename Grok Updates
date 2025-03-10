@@ -1,232 +1,230 @@
-2025-03-10 15:09:25 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 15:09:25 +0000
-2025-03-10 15:09:29 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 15:09:29 +0000
-2025-03-10 15:09:31 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 15:09:31 +0000
-2025-03-10 15:09:33 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 15:09:33 +0000
+2025-03-10 17:40:53 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 17:40:53 +0000
+2025-03-10 17:40:54 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 17:40:54 +0000
+2025-03-10 17:40:56 +0000: Debug - treatmentTimerEnd: nil, treatmentCountdown: nil, now: 2025-03-10 17:40:56 +0000
 
 
 11.9.0 - [GoogleUtilities/AppDelegateSwizzler][I-SWZ001014] App Delegate does not conform to UIApplicationDelegate protocol.
-TIPsApp init called at 2025-03-10 15:08:39 +0000
-AppData init started at 2025-03-10 15:08:39 +0000
-loadCachedData started at 2025-03-10 15:08:39 +0000
-No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/20876F07-ED13-48CE-B219-F07F9C8A308C/Documents/treatmentTimerEnd.cache
-No valid treatmentTimerEnd in UserDefaults or expired
-loadCachedData completed at 2025-03-10 15:08:39 +0000, treatmentTimerEnd: nil
-AppData init completed at 2025-03-10 15:08:39 +0000, treatmentTimerEnd: nil
+TIPsApp init called at 2025-03-10 17:40:07 +0000
+AppData init started at 2025-03-10 17:40:07 +0000
+loadCachedData started at 2025-03-10 17:40:07 +0000
+No treatmentTimerEnd data in UserDefaults
+No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+loadCachedData completed at 2025-03-10 17:40:07 +0000, treatmentTimerEnd: nil
+AppData init completed at 2025-03-10 17:40:07 +0000, treatmentTimerEnd: nil
 Error creating the CFMessagePort needed to communicate with PPT.
-App relaunched at 2025-03-10 15:08:39 +0000, resetting AppData
-reloadCachedData called at 2025-03-10 15:08:39 +0000
-loadCachedData started at 2025-03-10 15:08:39 +0000
-No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/20876F07-ED13-48CE-B219-F07F9C8A308C/Documents/treatmentTimerEnd.cache
-No valid treatmentTimerEnd in UserDefaults or expired
-loadCachedData completed at 2025-03-10 15:08:39 +0000, treatmentTimerEnd: nil
-ContentView onAppear - Initial load at 2025-03-10 15:08:39 +0000
-reloadCachedData called at 2025-03-10 15:08:39 +0000
-loadCachedData started at 2025-03-10 15:08:39 +0000
-No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/20876F07-ED13-48CE-B219-F07F9C8A308C/Documents/treatmentTimerEnd.cache
-No valid treatmentTimerEnd in UserDefaults or expired
-loadCachedData completed at 2025-03-10 15:08:39 +0000, treatmentTimerEnd: nil
+App relaunched at 2025-03-10 17:40:07 +0000, resetting AppData
+reloadCachedData called at 2025-03-10 17:40:07 +0000
+loadCachedData started at 2025-03-10 17:40:07 +0000
+No treatmentTimerEnd data in UserDefaults
+No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+loadCachedData completed at 2025-03-10 17:40:07 +0000, treatmentTimerEnd: nil
+ContentView onAppear - Initial load at 2025-03-10 17:40:07 +0000
+reloadCachedData called at 2025-03-10 17:40:07 +0000
+loadCachedData started at 2025-03-10 17:40:07 +0000
+No treatmentTimerEnd data in UserDefaults
+No treatmentTimerEnd file cache exists at /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+loadCachedData completed at 2025-03-10 17:40:07 +0000, treatmentTimerEnd: nil
 Cached treatmentTimerId: nil
 Cleared treatmentTimerEnd during reset as it’s past or nil
-saveCachedData called at 2025-03-10 15:08:39 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:39 +0000
+saveCachedData called at 2025-03-10 17:40:07 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:07 +0000
 Reset daily data for 2025-03-10 05:00:00 +0000, preserved historical logs: [:]
 No active timer to restore on appear
-saveCachedData called at 2025-03-10 15:08:39 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:39 +0000
-treatmentTimerEnd set to: nil, now: 2025-03-10 15:08:39 +0000
+saveCachedData called at 2025-03-10 17:40:07 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:07 +0000
+treatmentTimerEnd set to: nil, now: 2025-03-10 17:40:07 +0000
 AX Safe category class 'SLHighlightDisambiguationPillViewAccessibility' was not found!
 Class CKBrowserSwitcherViewController overrides the -traitCollection getter, which is not supported. If you're trying to override traits, you must use the appropriate API.
 Notification permission granted
 UIKeyboardLayoutStar implements focusItemsInRect: - caching for linear focus movement is limited as long as this view is on screen.
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
+saveCachedData called at 2025-03-10 17:40:12 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:12 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
 Cached treatmentTimerId: nil
-Cleared treatmentTimerEnd, now: 2025-03-10 15:08:51 +0000
+Cleared treatmentTimerEnd, now: 2025-03-10 17:40:13 +0000
 Cached treatmentTimerId: nil
-Cleared treatmentTimerEnd from Firebase, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
+Cleared treatmentTimerEnd from Firebase, now: 2025-03-10 17:40:13 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
 Users synced, treatmentTimerEnd: nil
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
-treatmentTimerEnd set to: nil, now: 2025-03-10 15:08:51 +0000
-Successfully updated user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9 in Firebase
-saveCachedData called at 2025-03-10 15:08:51 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:51 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
+treatmentTimerEnd set to: nil, now: 2025-03-10 17:40:13 +0000
+Successfully updated user 4D3F5199-47AF-47A9-BB71-386A65247F66 in Firebase
+saveCachedData called at 2025-03-10 17:40:13 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:13 +0000
 -[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = <null selector>, customInfoType = UIEmojiSearchOperations
 Toggle changed to: false
 Firebase snapshot received for cycles: Snap (cycles) {
-    "9275073C-9A39-40C4-B72E-6C8415B50288" =     {
-        foodChallengeDate = "2025-06-02T15:08:39Z";
-        id = "9275073C-9A39-40C4-B72E-6C8415B50288";
+    "D170A330-4C5A-4759-946D-DC2EADF34B27" =     {
+        foodChallengeDate = "2025-06-02T17:40:07Z";
+        id = "D170A330-4C5A-4759-946D-DC2EADF34B27";
         items =         {
-            "A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA" =             {
+            "71E3B7F1-F4C5-4BA8-99BF-924F65482101" =             {
                 category = Treatment;
                 dose = 1;
-                id = "A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA";
-                name = Test1;
+                id = "71E3B7F1-F4C5-4BA8-99BF-924F65482101";
+                name = T1;
                 order = 0;
                 unit = g;
             };
         };
         number = 1;
         patientName = H;
-        startDate = "2025-03-10T15:08:39Z";
+        startDate = "2025-03-10T17:40:07Z";
     };
 }
-Updated items for cycle 9275073C-9A39-40C4-B72E-6C8415B50288: ["Test1 - order: 0"]
-saveCachedData called at 2025-03-10 15:08:57 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:57 +0000
-Synced cycleItems: [9275073C-9A39-40C4-B72E-6C8415B50288: [TIPsApp.Item(id: A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA, name: "Test1", category: TIPsApp.Category.treatment, dose: Optional(1.0), unit: Optional("g"), weeklyDoses: nil, order: 0)]]
-Successfully saved item A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA to cycle 9275073C-9A39-40C4-B72E-6C8415B50288 in Firebase
-saveCachedData called at 2025-03-10 15:08:57 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:08:57 +0000
-Firebase items for 9275073C-9A39-40C4-B72E-6C8415B50288 after save: ["A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA": ["id": A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA, "category": Treatment, "unit": g, "order": 0, "dose": 1, "name": Test1]]
+Updated items for cycle D170A330-4C5A-4759-946D-DC2EADF34B27: ["T1 - order: 0"]
+saveCachedData called at 2025-03-10 17:40:20 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:20 +0000
+Synced cycleItems: [D170A330-4C5A-4759-946D-DC2EADF34B27: [TIPsApp.Item(id: 71E3B7F1-F4C5-4BA8-99BF-924F65482101, name: "T1", category: TIPsApp.Category.treatment, dose: Optional(1.0), unit: Optional("g"), weeklyDoses: nil, order: 0)]]
+Successfully saved item 71E3B7F1-F4C5-4BA8-99BF-924F65482101 to cycle D170A330-4C5A-4759-946D-DC2EADF34B27 in Firebase
+saveCachedData called at 2025-03-10 17:40:20 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:20 +0000
+Firebase items for D170A330-4C5A-4759-946D-DC2EADF34B27 after save: ["71E3B7F1-F4C5-4BA8-99BF-924F65482101": ["id": 71E3B7F1-F4C5-4BA8-99BF-924F65482101, "name": T1, "unit": g, "order": 0, "dose": 1, "category": Treatment]]
 -[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = <null selector>, customInfoType = UIEmojiSearchOperations
 Toggle changed to: false
 Firebase snapshot received for cycles: Snap (cycles) {
-    "9275073C-9A39-40C4-B72E-6C8415B50288" =     {
-        foodChallengeDate = "2025-06-02T15:08:39Z";
-        id = "9275073C-9A39-40C4-B72E-6C8415B50288";
+    "D170A330-4C5A-4759-946D-DC2EADF34B27" =     {
+        foodChallengeDate = "2025-06-02T17:40:07Z";
+        id = "D170A330-4C5A-4759-946D-DC2EADF34B27";
         items =         {
-            "1F765C07-CF21-46AF-9DB2-D08887F4BB79" =             {
+            "68A8F6CD-0259-4F39-83B1-4CB74FEA4022" =             {
                 category = Treatment;
                 dose = 2;
-                id = "1F765C07-CF21-46AF-9DB2-D08887F4BB79";
-                name = Test2;
+                id = "68A8F6CD-0259-4F39-83B1-4CB74FEA4022";
+                name = T2;
                 order = 1;
                 unit = g;
             };
-            "A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA" =             {
+            "71E3B7F1-F4C5-4BA8-99BF-924F65482101" =             {
                 category = Treatment;
                 dose = 1;
-                id = "A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA";
-                name = Test1;
+                id = "71E3B7F1-F4C5-4BA8-99BF-924F65482101";
+                name = T1;
                 order = 0;
                 unit = g;
             };
         };
         number = 1;
         patientName = H;
-        startDate = "2025-03-10T15:08:39Z";
+        startDate = "2025-03-10T17:40:07Z";
     };
 }
-Updated items for cycle 9275073C-9A39-40C4-B72E-6C8415B50288: ["Test1 - order: 0", "Test2 - order: 1"]
-saveCachedData called at 2025-03-10 15:09:04 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:04 +0000
-Synced cycleItems: [9275073C-9A39-40C4-B72E-6C8415B50288: [TIPsApp.Item(id: A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA, name: "Test1", category: TIPsApp.Category.treatment, dose: Optional(1.0), unit: Optional("g"), weeklyDoses: nil, order: 0), TIPsApp.Item(id: 1F765C07-CF21-46AF-9DB2-D08887F4BB79, name: "Test2", category: TIPsApp.Category.treatment, dose: Optional(2.0), unit: Optional("g"), weeklyDoses: nil, order: 1)]]
-Successfully saved item 1F765C07-CF21-46AF-9DB2-D08887F4BB79 to cycle 9275073C-9A39-40C4-B72E-6C8415B50288 in Firebase
-saveCachedData called at 2025-03-10 15:09:04 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:04 +0000
-Firebase items for 9275073C-9A39-40C4-B72E-6C8415B50288 after save: ["A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA": ["id": A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA, "category": Treatment, "order": 0, "unit": g, "name": Test1, "dose": 1], "1F765C07-CF21-46AF-9DB2-D08887F4BB79": ["dose": 2, "category": Treatment, "name": Test2, "order": 1, "id": 1F765C07-CF21-46AF-9DB2-D08887F4BB79, "unit": g]]
+Updated items for cycle D170A330-4C5A-4759-946D-DC2EADF34B27: ["T1 - order: 0", "T2 - order: 1"]
+saveCachedData called at 2025-03-10 17:40:27 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:27 +0000
+Synced cycleItems: [D170A330-4C5A-4759-946D-DC2EADF34B27: [TIPsApp.Item(id: 71E3B7F1-F4C5-4BA8-99BF-924F65482101, name: "T1", category: TIPsApp.Category.treatment, dose: Optional(1.0), unit: Optional("g"), weeklyDoses: nil, order: 0), TIPsApp.Item(id: 68A8F6CD-0259-4F39-83B1-4CB74FEA4022, name: "T2", category: TIPsApp.Category.treatment, dose: Optional(2.0), unit: Optional("g"), weeklyDoses: nil, order: 1)]]
+Successfully saved item 68A8F6CD-0259-4F39-83B1-4CB74FEA4022 to cycle D170A330-4C5A-4759-946D-DC2EADF34B27 in Firebase
+saveCachedData called at 2025-03-10 17:40:27 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:27 +0000
+Firebase items for D170A330-4C5A-4759-946D-DC2EADF34B27 after save: ["68A8F6CD-0259-4F39-83B1-4CB74FEA4022": ["dose": 2, "category": Treatment, "id": 68A8F6CD-0259-4F39-83B1-4CB74FEA4022, "order": 1, "name": T2, "unit": g], "71E3B7F1-F4C5-4BA8-99BF-924F65482101": ["order": 0, "unit": g, "id": 71E3B7F1-F4C5-4BA8-99BF-924F65482101, "name": T1, "category": Treatment, "dose": 1]]
 EditItemsView dismissed, saved reordered items
 Notification permission granted
-Successfully saved items to Firebase: ["Test1 - order: 0", "Test2 - order: 1"]
-saveCachedData called at 2025-03-10 15:09:05 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:05 +0000
-Rescheduling reminders for user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9, enabled: [:], times: [:]
-Cancelled reminder for Medicine: reminder_F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9_Medicine
-Cancelled reminder for Maintenance: reminder_F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9_Maintenance
-Cancelled reminder for Treatment: reminder_F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9_Treatment
-Cancelled reminder for Recommended: reminder_F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9_Recommended
-saveCachedData called at 2025-03-10 15:09:07 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:07 +0000
-saveCachedData called at 2025-03-10 15:09:07 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:07 +0000
-saveCachedData called at 2025-03-10 15:09:07 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:07 +0000
-saveCachedData called at 2025-03-10 15:09:07 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:07 +0000
+Successfully saved items to Firebase: ["T1 - order: 0", "T2 - order: 1"]
+saveCachedData called at 2025-03-10 17:40:27 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:27 +0000
+Rescheduling reminders for user 4D3F5199-47AF-47A9-BB71-386A65247F66, enabled: [:], times: [:]
+Cancelled reminder for Medicine: reminder_4D3F5199-47AF-47A9-BB71-386A65247F66_Medicine
+Cancelled reminder for Maintenance: reminder_4D3F5199-47AF-47A9-BB71-386A65247F66_Maintenance
+Cancelled reminder for Treatment: reminder_4D3F5199-47AF-47A9-BB71-386A65247F66_Treatment
+Cancelled reminder for Recommended: reminder_4D3F5199-47AF-47A9-BB71-386A65247F66_Recommended
+saveCachedData called at 2025-03-10 17:40:29 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:29 +0000
+saveCachedData called at 2025-03-10 17:40:29 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:29 +0000
+saveCachedData called at 2025-03-10 17:40:29 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:29 +0000
+saveCachedData called at 2025-03-10 17:40:29 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:29 +0000
 Users synced, treatmentTimerEnd: nil
-Successfully updated user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9 in Firebase
-Slider set duration to: 840.0 seconds
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-Slider set duration to: 720.0 seconds
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-Users synced, treatmentTimerEnd: nil
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
+Successfully updated user 4D3F5199-47AF-47A9-BB71-386A65247F66 in Firebase
+Slider set duration to: 480.0 seconds
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
 Slider set duration to: 60.0 seconds
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
 Users synced, treatmentTimerEnd: nil
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-Successfully updated user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9 in Firebase
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
-saveCachedData called at 2025-03-10 15:09:08 +0000
-Cleared treatmentTimerEnd cache, now: 2025-03-10 15:09:08 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
+saveCachedData called at 2025-03-10 17:40:30 +0000
+Cleared treatmentTimerEnd cache, now: 2025-03-10 17:40:30 +0000
 Users synced, treatmentTimerEnd: nil
-Successfully updated user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9 in Firebase
-Successfully updated user F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9 in Firebase
+Successfully updated user 4D3F5199-47AF-47A9-BB71-386A65247F66 in Firebase
+Successfully updated user 4D3F5199-47AF-47A9-BB71-386A65247F66 in Firebase
 Cached treatmentTimerId: nil
-Cleared treatmentTimerEnd, now: 2025-03-10 15:09:11 +0000
+Cleared treatmentTimerEnd, now: 2025-03-10 17:40:35 +0000
 Cached treatmentTimerId: nil
-Set treatmentTimerEnd to: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-Started timer: endDate = 2025-03-10 15:10:11 +0000, countdown = 60.000000
-Cached treatmentTimerId: Optional("treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A")
-treatmentTimerEnd changed, resuming: 2025-03-10 15:10:11 +0000
-Cached treatmentTimerId: Optional("treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A")
-Resumed timer: endDate = 2025-03-10 15:10:11 +0000, remaining = 59.993299, id = Optional("treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A")
-Scheduled notification for treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Notification treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A still pending, no reschedule needed
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-treatmentTimerEnd set to: Optional(2025-03-10 15:10:11 +0000), now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-treatmentTimerEnd set to: Optional(2025-03-10 15:10:11 +0000), now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-Set treatmentTimerEnd to: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-Firebase updated treatmentTimerEnd to: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-treatmentTimerEnd changed, resuming: 2025-03-10 15:10:11 +0000
-Cached treatmentTimerId: Optional("treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A")
-Resumed timer: endDate = 2025-03-10 15:10:11 +0000, remaining = 59.759863, id = Optional("treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A")
-Notification treatment_timer_4CE26C68-DA30-4883-B48E-FADC2C14B20A still pending, no reschedule needed
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-Consumption log synced: [9275073C-9A39-40C4-B72E-6C8415B50288: [A91DF60A-F6C2-4C21-9AF9-89A2AAF931CA: [TIPsApp.LogEntry(date: 2025-03-10 15:09:11 +0000, userId: F64DB6F4-13D9-4BAF-9D2C-F7F22160FCD9)]]]
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-saveCachedData called at 2025-03-10 15:09:11 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:11 +0000
-treatmentTimerEnd set to: Optional(2025-03-10 15:10:11 +0000), now: 2025-03-10 15:09:11 +0000
+Set treatmentTimerEnd to: 2025-03-10 17:41:35 +0000, now: 2025-03-10 17:40:35 +0000
+Started timer: endDate = 2025-03-10 17:41:35 +0000, countdown = 60.000000
+Cached treatmentTimerId: Optional("treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E")
+treatmentTimerEnd changed, resuming: 2025-03-10 17:41:35 +0000
+Cached treatmentTimerId: Optional("treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E")
+Resumed timer: endDate = 2025-03-10 17:41:35 +0000, remaining = 59.990875, id = Optional("treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E")
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Scheduled notification for treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E
+Notification treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E still pending, no reschedule needed
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 16 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 16 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+treatmentTimerEnd set to: Optional(2025-03-10 17:41:35 +0000), now: 2025-03-10 17:40:35 +0000
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 16 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 16 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+treatmentTimerEnd set to: Optional(2025-03-10 17:41:35 +0000), now: 2025-03-10 17:40:35 +0000
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 16 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+Set treatmentTimerEnd to: 2025-03-10 17:41:35 +0000, now: 2025-03-10 17:40:35 +0000
+Firebase updated treatmentTimerEnd to: 2025-03-10 17:41:35 +0000, now: 2025-03-10 17:40:35 +0000
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 9 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+treatmentTimerEnd changed, resuming: 2025-03-10 17:41:35 +0000
+Cached treatmentTimerId: Optional("treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E")
+Resumed timer: endDate = 2025-03-10 17:41:35 +0000, remaining = 59.235876, id = Optional("treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E")
+Notification treatment_timer_36A7F7DC-A0CE-461E-BEF4-622410AC599E still pending, no reschedule needed
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 9 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+Consumption log synced: [D170A330-4C5A-4759-946D-DC2EADF34B27: [71E3B7F1-F4C5-4BA8-99BF-924F65482101: [TIPsApp.LogEntry(date: 2025-03-10 17:40:35 +0000, userId: 4D3F5199-47AF-47A9-BB71-386A65247F66)]]]
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 9 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+saveCachedData called at 2025-03-10 17:40:35 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 9 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
+treatmentTimerEnd set to: Optional(2025-03-10 17:41:35 +0000), now: 2025-03-10 17:40:35 +0000
 -[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = dismissAutoFillPanel, customInfoType = UIUserInteractionRemoteInputOperations
 -[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = dismissAutoFillPanel, customInfoType = UIUserInteractionRemoteInputOperations
-Snapshotting a view (0x103547690, UIKeyboardImpl) that is not in a visible window requires afterScreenUpdates:YES.
+Snapshotting a view (0x102fedb40, UIKeyboardImpl) that is not in a visible window requires afterScreenUpdates:YES.
 [C:3] Error received: Connection interrupted.
 [C:3-1] Error received: Connection interrupted.
--[RTIInputSystemClient _configureConnection:withMachName:]_block_invoke  Client connection to service was interrupted: <NSXPCConnection: 0x600003307980> connection to service with pid -1 named (null)
-App terminating, saving state at 2025-03-10 15:09:18 +0000
-saveCachedData called at 2025-03-10 15:09:18 +0000
-Saved treatmentTimerEnd to file and UserDefaults: 2025-03-10 15:10:11 +0000, now: 2025-03-10 15:09:18 +0000
+-[RTIInputSystemClient _configureConnection:withMachName:]_block_invoke  Client connection to service was interrupted: <NSXPCConnection: 0x60000330e9e0> connection to service with pid -1 named (null)
+App terminating, saving state at 2025-03-10 17:40:46 +0000
+saveCachedData called at 2025-03-10 17:40:46 +0000
+Saved treatmentTimerEnd to UserDefaults: 2025-03-10 17:41:35 +0000, data: 9 bytes
+Saved treatmentTimerEnd to file: 2025-03-10 17:41:35 +0000, path: /Users/zack/Library/Developer/CoreSimulator/Devices/864F5D0B-9E50-4AE9-9B0F-9C40AC5F4C92/data/Containers/Data/Application/F8C21AAE-CA41-4BD7-B79B-8A74C4F6E0D2/Documents/treatmentTimerEnd.cache
